@@ -8,24 +8,36 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-const stringToObj = str => {
-  let obj = {};
-  str = str.replace(/[^\w]/g, "").toLowerCase();
-  for (let char of str) {
-    obj[char] = obj[char] + 1 || 1;
-  }
-  return obj;
+// const stringToObj = str => {
+//   let obj = {};
+//   str = str.replace(/[^\w]/g, "").toLowerCase();
+//   for (let char of str) {
+//     obj[char] = obj[char] + 1 || 1;
+//   }
+//   return obj;
+// };
+
+// function anagrams(stringA, stringB) {
+//   let objA = stringToObj(stringA);
+//   let objB = stringToObj(stringB);
+//   if (Object.keys(objA).length != Object.keys(objB).length) return false;
+
+//   for (let key in objB) {
+//     if (objA[key] != objB[key]) return false;
+//   }
+//   return true;
+// }
+
+const cleanString = str =>
+  str
+    .replace(/[^\w]/g, '')
+    .toLowerCase()
+    .split('')
+    .sort()
+    .join('');
+
+const anagrams = (stringA, stringB) => {
+  return cleanString(stringA) === cleanString(stringB);
 };
-
-function anagrams(stringA, stringB) {
-  let objA = stringToObj(stringA);
-  let objB = stringToObj(stringB);
-  if (Object.keys(objA).length != Object.keys(objB).length) return false;
-
-  for (let key in objB) {
-    if (objA[key] != objB[key]) return false;
-  }
-  return true;
-}
 
 module.exports = anagrams;
