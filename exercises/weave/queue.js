@@ -9,6 +9,11 @@ class Queue {
     this.data = [];
   }
 
+  peek() {
+    const len = this.data.length;
+    return this.data[len - 1];
+  }
+
   add(record) {
     this.data.unshift(record);
   }
